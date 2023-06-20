@@ -1,0 +1,63 @@
+<div class="container">
+    <br>
+      <form (ngSubmit)="doScrap()">
+          <div class="form-group">
+              <label for="webUrl">Please enter any website URL to scrap data</label>
+              <input type="text" placeholder="enter url" [(ngModel)]="webUrl" name="webUrl" class="form-control">
+          </div>
+          <input type="submit" value="Scrap" class="btn btn-primary form-control">
+          <span *ngIf="isInProg">Processing ... </span>
+      </form>
+      <br>
+      <div *ngIf="scarppedData">
+        <div class="row form-group">
+            <div class="col-md-4">
+                <label for="web">Brand Website: </label>
+                <input id="web" class="form-control" placeholder="Website Name" [value]="siteName">
+            </div>
+            <div class="col-md-4 flex-wrap">
+                <div class="row">
+                <div class="col-md-2" *ngFor="let lColor of scarppedData.logo_colors">
+                      <div style="margin: 10px; height: 30px; width:30px; border: solid 1px gray;" [ngStyle]="{'background-color': lColor}" ></div>
+                      <div class="item">{{lColor}}</div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="name">Brand Name: </label>
+                <input id="name" class="form-control" placeholder="Website Name" [value]="scarppedData.title">
+            </div>
+            
+          </div>
+          <div class="row form-group">
+            <div class="col-md-4">
+                <img [src]="logoSrc" style="max-height: 150px; max-width: 150px;" alt="logo" >
+            </div>
+            <div class="col-md-4">
+                <label for="desc">Brand Description: </label>
+                <textarea name="" id="" cols="30" rows="10" class="form-control" [value]="scarppedData.description || 'NA'"></textarea>
+            </div>
+            
+            <div class="col-md-4">
+                <label for="keys">Keywords: </label>
+                <textarea name="keys" id="keys" cols="30" rows="10" class="form-control" [value]="scarppedData.keywords || 'NA'"></textarea>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-4">
+                <label for="typo">Typography </label>
+               <select name="typo" id="typo" class="form-control">
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Georgia">Georgia</option>
+               </select>
+            </div>
+          </div>
+      </div>
+      
+  </div>
+  <!-- <div class="row">
+    <div class="col-md-12">
+        <label for="name">Hero name: </label>
+        <input id="name" [(ngModel)]="hero.name" placeholder="name">
+    </div>
+  </div> -->
